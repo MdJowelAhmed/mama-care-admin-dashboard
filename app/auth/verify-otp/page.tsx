@@ -101,7 +101,7 @@ function VerifyOtpContent() {
 
             <div className="text-center space-y-2">
               <p className="text-sm text-gray-600">
-                Didn't receive the code?{' '}
+                Didn`t receive the code?{' '}
                 <button type="button" className="text-[#CD671C] hover:underline">
                   Resend
                 </button>

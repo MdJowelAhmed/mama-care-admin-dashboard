@@ -107,6 +107,7 @@ const mockRevenueData: RevenueData[] = [
 export default function DashboardOverview() {
   const [timeFilter, setTimeFilter] = useState<TimeFilter>("6months");
   const [user, setUser] = useState<TimeFilter>("1month");
+  const [booking, setBooking] = useState<TimeFilter>("1month");
   // const { data: stats, isLoading } = useGetDashboardStatsQuery(timeFilter);
 
   return (
@@ -215,13 +216,30 @@ export default function DashboardOverview() {
           {/* Revenue Trend Chart */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center">
+             <div className="flex justify-between items-center">
+              <div>
+                 <CardTitle className="flex items-center">
                 <TrendingUp className="mr-2 h-5 w-5" />
                 Revenue & Bookings Trend
               </CardTitle>
               <CardDescription>
                 Monthly revenue and booking trends
               </CardDescription>
+              </div>
+              <div>
+                <Select value={booking} onValueChange={(value: TimeFilter) => setBooking(value)}>
+                  <SelectTrigger className="w-48">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1month">Last Month</SelectItem>
+                    <SelectItem value="3months">Last 3 Months</SelectItem>
+                    <SelectItem value="6months">Last 6 Months</SelectItem>
+                    <SelectItem value="1year">Last Year</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+             </div>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={250}>

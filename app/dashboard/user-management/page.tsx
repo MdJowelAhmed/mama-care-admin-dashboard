@@ -8,6 +8,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useGetUsersQuery } from '@/lib/store';
 
+// User interface
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  joinDate: string;
+  status: string;
+  bookings: number;
+  avatar: string;
+}
+
 // Mock user data
 const mockUsers = [
   {
@@ -72,7 +84,7 @@ export default function UserManagement() {
       key: 'user',
       header: 'User',
       className: '',
-      render: (_, user) => (
+      render: (_: any, user: User) => (
         <div className="flex items-center space-x-3">
           <Avatar className="h-8 w-8">
             <AvatarImage src={user.avatar} alt={user.name} />
@@ -91,8 +103,8 @@ export default function UserManagement() {
       key: 'role',
       header: 'Role',
       className: '',
-      render: (value) => (
-        <Badge className={roleColors[value] || 'bg-gray-100 text-gray-800'}>
+      render: (value: string) => (
+        <Badge className={roleColors[value as keyof typeof roleColors] || 'bg-gray-100 text-gray-800'}>
           {value.charAt(0).toUpperCase() + value.slice(1)}
         </Badge>
       )
@@ -101,7 +113,7 @@ export default function UserManagement() {
       key: 'joinDate',
       header: 'Join Date',
       className: '',
-      render: (value) => new Date(value).toLocaleDateString()
+      render: (value: string) => new Date(value).toLocaleDateString()
     },
     {
       key: 'bookings',
@@ -112,8 +124,8 @@ export default function UserManagement() {
       key: 'status',
       header: 'Status',
       className: '',
-      render: (value) => (
-        <Badge className={statusColors[value] || 'bg-gray-100 text-gray-800'}>
+      render: (value: string) => (
+        <Badge className={statusColors[value as keyof typeof statusColors] || 'bg-gray-100 text-gray-800'}>
           {value.charAt(0).toUpperCase() + value.slice(1)}
         </Badge>
       )
@@ -186,13 +198,13 @@ export default function UserManagement() {
         </div> */}
 
         <Card>
-          <CardHeader>
+          {/* <CardHeader>
             <CardTitle>All Users</CardTitle>
             <CardDescription>
               Manage all registered users on your platform
             </CardDescription>
-          </CardHeader>
-          <CardContent>
+          </CardHeader> */}
+          <CardContent className='mt-6'>
             <DataTable
               columns={columns}
               data={mockUsers}

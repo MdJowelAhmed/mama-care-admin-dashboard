@@ -172,8 +172,21 @@ export default function ReportsPage() {
         { value: 'resolved', label: 'Resolved' },
         { value: 'dismissed', label: 'Dismissed' }
       ]
+    },
+    {
+      key: 'reportType',
+      label: 'Category',
+      options: [
+        { value: 'inappropriate_behavior', label: 'Inappropriate Behavior' },
+        { value: 'safety_concern', label: 'Safety Concern' },
+        { value: 'service_quality', label: 'Service Quality' },
+        { value: 'payment_issue', label: 'Payment Issue' },
+        { value: 'other', label: 'Other' }
+      ]
     }
-  ];
+    ];
+
+  
 
   const getFilteredData = () => {
     if (dateFilter === 'all') return mockReports;
@@ -211,21 +224,11 @@ export default function ReportsPage() {
             <p className="text-gray-600">Review and manage user reports</p>
           </div>
           
-          <Select value={dateFilter} onValueChange={(value: DateFilter) => setDateFilter(value)}>
-            <SelectTrigger className="w-48">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Reports</SelectItem>
-              <SelectItem value="today">Today</SelectItem>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
-            </SelectContent>
-          </Select>
+     
         </div>
 
         {/* Report Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-gray-600">Total Reports</CardTitle>
@@ -269,21 +272,17 @@ export default function ReportsPage() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
 
         <Card>
-          <CardHeader>
-            <CardTitle>All Reports</CardTitle>
-            <CardDescription>
-              Review and take action on user reports
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+          
+          <CardContent className='mt-6'>
             <DataTable
               columns={columns}
               data={getFilteredData()}
               searchKey="reporterName"
               filters={filters}
+              
               itemsPerPage={10}
             />
           </CardContent>
