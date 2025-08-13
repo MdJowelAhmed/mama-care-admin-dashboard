@@ -143,20 +143,20 @@ export default function BookingManagement() {
 
   return (
     <DashboardLayout>
-      <div className="p-6">
-        <div className="mb-6">
+      <div className="p-6 ">
+        <div className="my-6">
           <h1 className="text-3xl font-bold text-gray-900">Booking Management</h1>
           <p className="text-gray-600">Manage and monitor all booking activities</p>
         </div>
 
         <Card>
-          <CardHeader>
+          {/* <CardHeader>
             <CardTitle>All Bookings</CardTitle>
             <CardDescription>
               View and manage all booking requests and appointments
             </CardDescription>
-          </CardHeader>
-          <CardContent>
+          </CardHeader> */}
+          <CardContent className='mt-6'>
             <DataTable
               columns={columns}
               data={mockBookings}
